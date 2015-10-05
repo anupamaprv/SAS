@@ -1,0 +1,17 @@
+/*  Author - Anupama Rajaram
+    Using SQL code snippets within SAS
+*/
+
+PROC SQL;
+CREATE TABLE WORK.query AS
+SELECT Make , Model , Origin , Cylinders , MPG_City , MPG_Highway FROM SASHELP.CARS 
+	WHERE  Origin="Asia" ORDER BY sortkey("Make"n, "en_US");
+RUN;
+QUIT;
+
+PROC DATASETS NOLIST NODETAILS;
+CONTENTS DATA=WORK.query OUT=WORK.details;
+RUN;
+
+PROC PRINT DATA=WORK.details;
+RUN;
